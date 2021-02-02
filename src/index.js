@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import {BrowserRouter} from 'react-router-dom';
+
+import {HelmetProvider} from 'react-helmet-async'
 
 import {ThemeProvider} from '@material-ui/core/styles'
 import Theme from './utils/theme.util'
@@ -16,7 +17,9 @@ import thunk from 'redux-thunk'
 import persistState from 'redux-localstorage'
 import rootReducers from './redux/reducers/index.reducer'
 
-import './assets/bootstrap-grid.asset.css'
+import 'react-toastify/dist/ReactToastify.css';
+import './assets/styles/bootstrap-grid.asset.css'
+import './assets/styles/globals.scss'
 
 const mainCompose = compose(
   applyMiddleware(thunk),
@@ -26,15 +29,15 @@ const mainCompose = compose(
 const store = createStore(rootReducers, {}, mainCompose)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <ThemeProvider theme={Theme}>
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+    <HelmetProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider theme={Theme}>
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
+    </HelmetProvider>,
   document.getElementById('root')
 );
 

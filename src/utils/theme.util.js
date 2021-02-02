@@ -2,7 +2,14 @@ import {createMuiTheme, responsiveFontSizes} from '@material-ui/core/styles'
 
 let theme = createMuiTheme({
     typography : {
-        fontFamily : "'Saira Condensed', sans-serif",
+        fontFamily : "'Montserrat', sans-serif",
+    },
+    overrides : {
+        MuiFormHelperText : {
+            root : {
+                fontSize : "1em"
+            }
+        }
     }
 })
 
@@ -15,18 +22,18 @@ let theme = createMuiTheme({
 //     }
 // }
 
-// theme.palette.primary = {
-//     light: '#2d3959',
-//     main: '#162447',
-//     dark: '#13203f',
-//     contrastText: '#e6e6e6'
-// }
-// theme.palette.secondary = {
-//     light: '#a33144',
-//     main: '#991B30',
-//     dark: '#89182b',
-//     contrastText: '#e6e6e6'
-// }
+theme.palette.primary = {
+    light: '#3f6bab',
+    main: '#0f4796',
+    dark: '#0a3169',
+    contrastText: '#e6e6e6'
+}
+theme.palette.secondary = {
+    light: '#bf4746',
+    main: '#af1918',
+    dark: '#7a1110',
+    contrastText: '#e6e6e6'
+}
 
 theme = responsiveFontSizes(theme)
 

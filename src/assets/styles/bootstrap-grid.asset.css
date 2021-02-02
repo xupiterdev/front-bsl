@@ -8,6 +8,10 @@
   width: device-width;
 }
 
+.dev{
+  border: solid 1px red;
+}
+
 html {
   box-sizing: border-box;
   -ms-overflow-style: scrollbar;

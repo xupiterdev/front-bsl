@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,300;1,400&display=swap');
+
+$danger: #c62828;
+$danger-dark: #b71c1c;
+$danger-light: #d32f2f;
+
+$info: #1565c0;
+$info-dark: #0d47a1;
+$info-light: #1976d2;
+
+$success: #2e7d32;
+$success-dark: #1b5e20;
+$success-light: #388e3c;
+
+$warning: #ef6c00;
+$warning-dark: #e65100;
+$warning-light: #f57c00;
+
+$primary:#0f4796; //900
+$primary-dark:#0a3169;
+$primary-light:#3f6bab;
+
+$secondary: #af1918; // 700
+$secondary-dark: #7a1110;
+$secondary-light: #bf4746;
+
+// $tertiary: #00796b; // 700
+// $tertiary-dark: #00695c;
+// $tertiary-light:#00897b;
+
+$light: #cfcfcf;
+$black: #000000;
+$body: #f3f3f3;
+$disabled: #a3a3a3;
+$text:#2e2e2e;
+
+$transition:all 0.2s ease-in-out;
+$radius : 2px;
+$box-shadow: 0 0 10px 0px;
+$box-shadow-top: 0px -10px  0px;
+$box-shadow-left: -10px 0px  0px;
+$box-shadow-bottom: 0px 10px  0px;
+$box-shadow-right: 0px 0px  10px;
+$border : solid 1.5px;
+
+%full-screen{
+    width: 100vw;
+    height: 100vh;
+}
+
+*{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.text-danger{
+    color: $danger !important;
+}
+
+body{
+    background:$body;
+}
+
+#signIn{
+    & > div{height: 100vh;}
+    & > div:nth-child(2){
+        background: url('../img/img-sign-in.jpg');
+    }
+
+    & .form-sign-in{
+        background: $body;
+        border-radius: $radius;
+        padding: 4em 0;
+        -webkit-box-shadow: $box-shadow rgba(105, 104, 104, 0.75);
+        -moz-box-shadow: $box-shadow rgba(105, 104, 104, 0.75);
+        box-shadow: $box-shadow rgba(105, 104, 104, 0.75);
+        margin-top: 5em;
+    }
+}
+
+.drawer{
+    & .sidebar{
+        background: $body;
+        width: 300px;
+        height: 100%;
+
+        & .sidebar-header{
+            height: 3em;
+        }
+    }
+
+}
+
+.link-active{
+    background: $light !important;
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    #signIn{
+        & > div{height: 100vh;}
+        & > div:nth-child(1){
+            background: url('../img/img-sign-in.jpg');
+            clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
+        }
+        & > div:nth-child(2){background: none;}
+    
+        & .form-sign-in{
+            background: #fff;
+            padding: 3em 0;
+            margin-top: 0em;
+        }
+    }
+
+    .drawer{
+        & .sidebar{
+            width: 250px;
+    
+            & .sidebar-header{
+                height: 3.5em;
+            }
+        }
+    
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
