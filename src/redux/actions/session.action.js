@@ -41,7 +41,6 @@ export const SignIn = (data, functions) => {
 export const SignOut = () => {
     return async (dispatch) => {
         let toastId = toast("Cargando..", { autoClose: false });
-        alert("m")
         dispatch({
             type : "SET_SESSION_DATA",
             payload : {

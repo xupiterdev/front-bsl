@@ -32,12 +32,13 @@ import {
 } from "react-router-dom";
 
 import {useSelector, useDispatch} from 'react-redux'
-import {SignOut} from '../redux/actions/session.action'
+// import {SignOut} from '../redux/actions/session.action'
 
 // VISTAS
-import ListUsers from '../views/users/listUsers.view'
+import AllUsers from '../views/users/allUsers.view'
+import AddOrUpdateUser from '../views/users/addOrUpdateUser.view'
 
-setHeaderAXIOS();
+import AllModules from '../views/modules/allModules.view'
 
 function RouteIndex(){
     // VARIABLES
@@ -47,7 +48,7 @@ function RouteIndex(){
     })
 
     const {userData} = useSelector(state => state.Session)
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const handleSignOut = async () => {
         localStorage.clear()
@@ -58,14 +59,16 @@ function RouteIndex(){
         // }
     }
 
+    setHeaderAXIOS();
+
     // RENDER
     return(
         <React.Fragment>
             <Helmet>
                 <title>{api.NAME_APP} - Inicio</title>
            </Helmet>
-           <AppBar>
-               <Toolbar >
+           <AppBar position="sticky">
+               <Toolbar variant="dense">
                     <IconButton color="inherit" onClick={() => setShow({...show, menu : !show.menu})}>
                        <MenuIcono />
                     </IconButton>
@@ -112,16 +115,23 @@ function RouteIndex(){
                                 <div><Typography variant="h6">Menu</Typography></div>
                             </div>
                             <Divider />
-                            <ListItem button component={NavLink} to="/s/users" activeClassName="link-active">
+                            <ListItem button component={NavLink} to="/s/users/all" activeClassName="link-active">
                                     <ListItemIcon><Person /></ListItemIcon>
                                     <ListItemText primary="Usuarios"/>
+                            </ListItem>
+                            <ListItem button component={NavLink} to="/s/modules/all" activeClassName="link-active">
+                                    <ListItemIcon><Person /></ListItemIcon>
+                                    <ListItemText primary="Modulos"/>
                             </ListItem>
                         </List>
                     </div>
                 </Drawer>
                 <div>
                     <Switch>
-                        <Route exact path="/s/users" render={(props) => <ListUsers {...props} />} />
+                        <Route exact path="/s/users/all" render={(props) => <AllUsers {...props} />} />
+                        <Route exact path="/s/users/add-user" render={(props) => <AddOrUpdateUser {...props} />} />
+                        
+                        <Route exact path="/s/modules/all" render={(props) => <AllModules {...props} />} />
                     </Switch>
                 </div>
            </React.Fragment>

@@ -18,6 +18,8 @@ import {useForm} from 'react-hook-form'
 import {useDispatch} from 'react-redux'
 import {SignIn as _SignIn} from '../../redux/actions/session.action'
 
+import Fade from 'react-reveal/Fade'
+
 export default function SignIn () {
     const [show, setShow] = useState({
         password : false,
@@ -45,7 +47,8 @@ export default function SignIn () {
             <Helmet><title>{api.NAME_APP} - Iniciar sesión</title></Helmet>
             <div id="signIn" className="row">
                 <div className="col-md-9 d-none d-md-block"></div>
-                <div className="col-md-3 row justify-content-center align-items-md-center align-items-start">
+                <Fade top>
+                    <div className="col-md-3 row justify-content-center align-items-md-center align-items-start">
                     <form className="form-sign-in col-md-10 col-9" onSubmit={handleSubmit(handleSignIn)}>
                         <Typography variant="h4" className="text-center mb-md-05 mb-1">Bienvenido!</Typography>
                         {show.loading ? <div className="text-center mb-1"><CircularProgress /></div> : ""}
@@ -102,6 +105,7 @@ export default function SignIn () {
                         </div>
                     </form>
                 </div>
+                </Fade>
             </div>
         </React.Fragment>
     )

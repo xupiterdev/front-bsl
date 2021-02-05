@@ -4,7 +4,7 @@ import jwt  from 'jsonwebtoken'
 
 export const isValidToken = (token) => {
     try{
-        jwt.verify(token, process.env.REACT_APP_KEY_TO_TOKEN)
+        jwt.verify(token, process.env.REACT_APP_KEY_TOKEN)
         // toast.success("Bievenido", { autoClose: 1000 });
         return true
     }catch(err){

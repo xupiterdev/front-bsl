@@ -5,22 +5,24 @@ let theme = createMuiTheme({
         fontFamily : "'Montserrat', sans-serif",
     },
     overrides : {
+        MuiFormControl : {
+            root : {
+                width : "100%",
+                marginBottom : "0.5em"
+            }
+        },
         MuiFormHelperText : {
             root : {
+                fontSize : "1em"
+            }
+        },
+        MuiButton : {
+            label : {
                 fontSize : "1em"
             }
         }
     }
 })
-
-// theme.overrides.MuiButton = {
-//     root : {
-//         letterSpacing : "2px",
-//         fontFamily : "'Saira Condensed', sans-serif",
-//         fontWeight : "bold",
-//         fontSize : "1em"
-//     }
-// }
 
 theme.palette.primary = {
     light: '#3f6bab',
