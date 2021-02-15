@@ -50,7 +50,7 @@ function ListUsers(){
                             <Menu
                                 id="menuAdd"
                                 anchorEl={show.menuAdd}
-                                open={show.menuAdd}
+                                open={show.menuAdd ? true : false}
                                 onClose={() => toggleShow("menuAdd", null)}
                             >
                                 <MenuItem component={NavLink} to="/s/users/add-user">Usuario</MenuItem>

@@ -84,7 +84,7 @@ export default function SignIn () {
                                     error={errors.password !== undefined ? true : false}
                                     InputProps={{
                                         endAdornment : (
-                                            <InputAdornment onClick={() => setShow({...show, password : !show.password})}>
+                                            <InputAdornment style={{cursor:"pointer"}} onClick={() => setShow({...show, password : !show.password})}>
                                                 {show.password ? <VisibilityOff/> : <Visibility/>}
                                             </InputAdornment>
                                         )

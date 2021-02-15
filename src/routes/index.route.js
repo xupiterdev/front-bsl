@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Helmet} from 'react-helmet-async'
 import {api} from '../utils/api.util'
 import {setHeaderAXIOS} from '../utils/helper.util'
@@ -15,7 +15,8 @@ import {
     ListItemIcon,
     ListItemText,
     Drawer,
-    Divider
+    Divider,
+    Collapse
 } from '@material-ui/core'
 
 import {
@@ -32,7 +33,9 @@ import {
 } from "react-router-dom";
 
 import {useSelector, useDispatch} from 'react-redux'
-// import {SignOut} from '../redux/actions/session.action'
+import {GetModule} from '../redux/actions/modules.action'
+
+import {Loader} from '../components/Loader.components'
 
 // VISTAS
 import AllUsers from '../views/users/allUsers.view'
@@ -40,15 +43,32 @@ import AddOrUpdateUser from '../views/users/addOrUpdateUser.view'
 
 import AllModules from '../views/modules/allModules.view'
 
+import CustomerServices from '../views/imports/customerServices.view'
+import AddOrUpdateReference from '../views/imports/addOrUpdateReference.view'
+
 function RouteIndex(){
     // VARIABLES
     const [show, setShow] = useState({
         userOptions : null,
-        menu : false
+        menu : false,
+        loader : true
     })
 
     const {userData} = useSelector(state => state.Session)
-    // const dispatch = useDispatch();
+    const modules = useSelector(state => state.Modules.modules)
+
+    const dispatch = useDispatch();
+    
+    // FUNCTIONS
+    const toggle = (type, value) => setShow({...show, [type] : value})
+
+    const fetchModules = async () => {
+        try{
+            await dispatch(GetModule())
+        }catch(err){
+            console.log(err)
+        }
+    }
 
     const handleSignOut = async () => {
         localStorage.clear()
@@ -61,9 +81,16 @@ function RouteIndex(){
 
     setHeaderAXIOS();
 
+    useEffect(() => {
+        fetchModules()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        toggle("loader", false)
+    }, [])
+
     // RENDER
     return(
         <React.Fragment>
+            <Loader open={show.loader}/>
             <Helmet>
                 <title>{api.NAME_APP} - Inicio</title>
            </Helmet>
@@ -115,14 +142,61 @@ function RouteIndex(){
                                 <div><Typography variant="h6">Menu</Typography></div>
                             </div>
                             <Divider />
-                            <ListItem button component={NavLink} to="/s/users/all" activeClassName="link-active">
+                            {
+                                modules.map((module, i) => {
+                                    if(module.children.length !== 0){
+                                        let p = module.children.filter((c) => {
+                                            let ac = c._Action.map((a) => userData._Action.includes(a._id))
+                                            return ac.includes(true)
+                                        })
+                                        if(p.length !== 0){
+                                            let link = module.shortName.replace(" ", "-")
+                                            return(
+                                                <div>
+                                                    <ListItem button component={NavLink} to="/s/users/all" activeClassName="link-active" key={i}>
+                                                        <ListItemIcon><Person /></ListItemIcon>
+                                                        <ListItemText primary={module.shortName}/>
+                                                    </ListItem>
+                                                    <Collapse in={true} timeout="auto" unmountOnExit>
+                                                        <List component="div" disablePadding>
+                                                            {
+                                                                module.children.map((c, x) => {
+                                                                    link += `/${c.shortName.replace(" ", "-")}`
+                                                                    return(
+                                                                        <ListItem button component={NavLink} to={`/s/${link}`} activeClassName="link-active ml-1" key={x}>
+                                                                            <ListItemIcon><Person /></ListItemIcon>
+                                                                            <ListItemText primary={c.shortName}/>
+                                                                    </ListItem>
+                                                                    )
+                                                                })
+                                                            }
+                                                        </List>
+                                                    </Collapse>
+                                                </div>
+                                            )
+                                        } 
+                                    }else{
+                                        let ac = module._Action.map((a) => userData._Action.includes(a._id))
+
+                                        let link = module.shortName.replace(" ", "-")
+                                            
+                                        if(ac.includes(true)){
+                                            return(<ListItem button component={NavLink} to={`/s/${link}`} activeClassName="link-active" key={i}>
+                                                        <ListItemIcon><Person /></ListItemIcon>
+                                                        <ListItemText primary={module.shortName}/>
+                                                </ListItem>) 
+                                        }
+                                    }
+                                })
+                            }
+                            {/* <ListItem button component={NavLink} to="/s/users/all" activeClassName="link-active">
                                     <ListItemIcon><Person /></ListItemIcon>
                                     <ListItemText primary="Usuarios"/>
                             </ListItem>
                             <ListItem button component={NavLink} to="/s/modules/all" activeClassName="link-active">
                                     <ListItemIcon><Person /></ListItemIcon>
                                     <ListItemText primary="Modulos"/>
-                            </ListItem>
+                            </ListItem> */}
                         </List>
                     </div>
                 </Drawer>
@@ -132,6 +206,9 @@ function RouteIndex(){
                         <Route exact path="/s/users/add-user" render={(props) => <AddOrUpdateUser {...props} />} />
                         
                         <Route exact path="/s/modules/all" render={(props) => <AllModules {...props} />} />
+
+                        <Route exact path="/s/importacion/atencion-cliente" render={(props) => <CustomerServices {...props}/> } />
+                        <Route exact path="/s/importacion/atencion-cliente/agregar-referencia" render={(props) => <AddOrUpdateReference {...props}/> } />
                     </Switch>
                 </div>
            </React.Fragment>

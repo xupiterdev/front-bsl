@@ -48,6 +48,30 @@ $border : solid 1.5px;
     height: 100vh;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    &:horizontal{
+        height: 10px;
+    }
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: $light;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $primary;
+    border-radius: $radius;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: $primary-dark;
+}
+
 *{
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
@@ -67,6 +91,7 @@ body{
     text-decoration: none;
     &:hover {
         text-decoration:underline;
+        cursor: pointer;
     }
 }
 
@@ -87,16 +112,15 @@ body{
 .btn-success{
     background: $success !important;
     color: $body !important;
-    &:hover{
-        background: $success-dark !important;
-    }
+    &:hover{background: $success-dark !important;}
+
+    &:disabled{background: $disabled !important;}
 }
 .btn-primary{
     background: $primary !important;
     color: $body !important;
-    &:hover{
-        background: $primary-dark !important;
-    }
+    &:hover{background: $primary-dark !important;}
+    &:disabled{background: $disabled !important;}
 }
 
 // modal
@@ -122,6 +146,7 @@ body{
 }
 
 #signIn{
+    // background: #547981;
     background: linear-gradient(to bottom, $primary-light, $primary-dark);
     & > div{height: 100vh;}
     & .form-sign-in{
@@ -148,8 +173,62 @@ body{
 
 }
 
+.menu-list{
+    position: relative;
+    
+    &:hover  .menu-options{
+        display: block;
+    }
+    & .menu-options{
+        position: absolute;
+        top: -10px;
+        z-index: 100;
+        background: #fff;
+        padding:0.5em 0;
+        width: auto;
+        box-shadow: $box-shadow rgba(105, 104, 104, 0.75);
+        border-radius: $radius;
+    }
+}
+
+.ul-action{
+    list-style: none;
+
+    & .li-action {
+        padding: 0.5em;
+        margin-bottom: 0.5em;
+        // background: rgb(212, 212, 212);
+        border-radius: $radius;
+        border-bottom: 0.5px solid rgba(105, 104, 104, 0.75);
+
+        &:hover{
+            box-shadow: $box-shadow rgba(105, 104, 104, 0.75);
+        }
+    }
+}
+
+.loader{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 10000000000;
+    top: 0;
+    left: 0;
+    background: $body;
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+}
+
 .link-active{
     background: $light !important;
+}
+
+.more-info-table{
+    margin: 1em;
+    padding: 0 0.5em 0.5em 0.5em;
+    border-radius: $radius;
+    box-shadow: $box-shadow rgba(105, 104, 104, 0.75);
 }
 
 // Small devices (landscape phones, 576px and up)
@@ -164,7 +243,8 @@ body{
     #signIn{
         & > div{height: 100vh;}
         & > div:nth-child(1){
-            background: url('../img/img-sign-in.jpg');
+            background: url('../img/img-sign-in.jpeg');
+            background-size: cover;
             clip-path: polygon(0 0, 100% 0, 89% 100%, 0% 100%);
         }
         & > div:nth-child(2){background: none;}
