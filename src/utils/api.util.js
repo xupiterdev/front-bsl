@@ -1,7 +1,7 @@
-const HOST_API = "http://localhost:3001/v1"
+const HOST_API = "http://10.0.0.12:3001/v1"
 
 export const api = {
-    HOST : "http://localhost:3000",
+    HOST : "http://10.0.0.12:3000",
     HOST_API : HOST_API,
     USERS : {
         SIGN_IN : `${HOST_API}/users/sign-in`,
@@ -12,7 +12,11 @@ export const api = {
         GET : `${HOST_API}/modules/module`,
         ADD_ACTION : `${HOST_API}/modules/action`
     },
-    END_POINT : "http://localhost:3001",
+    CATALOGS : {
+        ADD : `${HOST_API}/catalogs/catalog`,
+        GET : `${HOST_API}/catalogs/catalog`
+    },
+    END_POINT : "http://10.0.0.12:3001",
     NAME_APP : 'BSL System'
 }
 // const HOST_API = "http://192.168.0.4:3001/v1"

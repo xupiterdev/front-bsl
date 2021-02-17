@@ -20,6 +20,11 @@ let theme = createMuiTheme({
             label : {
                 fontSize : "1em"
             }
+        },
+        MuiTableCell : {
+            root : {
+                whiteSpace : "nowrap"
+            }
         }
     }
 })

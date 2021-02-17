@@ -179,7 +179,7 @@ const columns = [
       sortable: true
     },
   ];
-function CustomerServices(){
+function Imports(){
     // VARIABLES
     const [show, setShow] = useState({
         menuAdd : null
@@ -250,22 +250,21 @@ function CustomerServices(){
     )
 }
 
-export default CustomerServices;
+export default Imports;
 function MyTable() {
   return(
     <div className="more-info-table">
       <TableContainer>
         <div style={{
-          // overflowX: "scroll",
           width : document.getElementsByClassName("NfIlA")[0].scrollWidth - 50
         }}>
-          <Table>
+          <Table size="small">
             <TableHead>
               <TableRow>
                 <TableCell>No</TableCell>
                 <TableCell>Referencia</TableCell>
                 <TableCell>Cliente</TableCell>
-                <TableCell>Referencia corresponsal</TableCell>
+                <TableCell className="th">Referencia corresponsal</TableCell>
                 <TableCell>Tipo de operacion</TableCell>
                 <TableCell>Tipo de mercancia</TableCell>
                 <TableCell>Aduana</TableCell>
@@ -296,38 +295,36 @@ function MyTable() {
             </TableHead>
             <TableBody>
                 <TableRow>
-                  <TableCell>3927482638</TableCell>
-                  <TableCell>H2G4T415445</TableCell>
-                  <TableCell>Bachoco</TableCell>
-                  <TableCell>FJJHV874BJ</TableCell>
-                  <TableCell>05/01/2021</TableCell>
-                  <TableCell>Importacion</TableCell>
-                  <TableCell>Carga suelta</TableCell>
-                  <TableCell>Altamira</TableCell>
-                  <TableCell>CDMX</TableCell>
-                  <TableCell>BILU</TableCell>
-                  <TableCell>BILU123456B</TableCell>
-                  <TableCell>JHBKB</TableCell>
-                  <TableCell>Cosco</TableCell>
-                  <TableCell>FUYRDT</TableCell>
-                  <TableCell>Veracruz</TableCell>
-                  <TableCell>JDFG764HGF</TableCell>
-                  <TableCell>3927482638</TableCell>
-                  <TableCell>H2G4T415445</TableCell>
-                  <TableCell>Bachoco</TableCell>
-                  <TableCell>FJJHV874BJ</TableCell>
-                  <TableCell>05/01/2021</TableCell>
-                  <TableCell>Importacion</TableCell>
-                  <TableCell>Carga suelta</TableCell>
-                  <TableCell>Altamira</TableCell>
-                  <TableCell>CDMX</TableCell>
-                  <TableCell>BILU</TableCell>
-                  <TableCell>BILU123456B</TableCell>
-                  <TableCell>JHBKB</TableCell>
-                  <TableCell>Cosco</TableCell>
-                  <TableCell>FUYRDT</TableCell>
-                  <TableCell>Veracruz</TableCell>
-                  <TableCell>JDFG764HGF</TableCell>
+                  <TableCell>No</TableCell>
+                  <TableCell>Referencia</TableCell>
+                  <TableCell>Cliente</TableCell>
+                  <TableCell className="th">Referencia corresponsal</TableCell>
+                  <TableCell>Tipo de operacion</TableCell>
+                  <TableCell>Tipo de mercancia</TableCell>
+                  <TableCell>Aduana</TableCell>
+                  <TableCell>Oficina Comercial</TableCell>
+                  <TableCell>Contenedor</TableCell>
+                  <TableCell>Referencia cliente</TableCell>
+                  <TableCell>B/M</TableCell>
+                  <TableCell>Naviera</TableCell>
+                  <TableCell>BL</TableCell>
+                  <TableCell>Puerto de origen</TableCell>
+                  <TableCell>Flete maritimo</TableCell>
+                  <TableCell>No</TableCell>
+                  <TableCell>Referencia</TableCell>
+                  <TableCell>Cliente</TableCell>
+                  <TableCell>Referencia corresponsal</TableCell>
+                  <TableCell>Tipo de operacion</TableCell>
+                  <TableCell>Tipo de mercancia</TableCell>
+                  <TableCell>Aduana</TableCell>
+                  <TableCell>Oficina Comercial</TableCell>
+                  <TableCell>Contenedor</TableCell>
+                  <TableCell>Referencia cliente</TableCell>
+                  <TableCell>B/M</TableCell>
+                  <TableCell>Naviera</TableCell>
+                  <TableCell>BL</TableCell>
+                  <TableCell>Puerto de origen</TableCell>
+                  <TableCell>Flete maritimo</TableCell>
                 </TableRow>
               </TableBody>
           </Table>

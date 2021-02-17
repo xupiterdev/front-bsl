@@ -43,8 +43,10 @@ import AddOrUpdateUser from '../views/users/addOrUpdateUser.view'
 
 import AllModules from '../views/modules/allModules.view'
 
-import CustomerServices from '../views/imports/customerServices.view'
+import Imports from '../views/imports/index.view'
 import AddOrUpdateReference from '../views/imports/addOrUpdateReference.view'
+
+import Catalogs from '../views/catalogs/index.view'
 
 function RouteIndex(){
     // VARIABLES
@@ -183,7 +185,7 @@ function RouteIndex(){
                                         if(ac.includes(true)){
                                             return(<ListItem button component={NavLink} to={`/s/${link}`} activeClassName="link-active" key={i}>
                                                         <ListItemIcon><Person /></ListItemIcon>
-                                                        <ListItemText primary={module.shortName}/>
+                                                        <ListItemText primary={module.name}/>
                                                 </ListItem>) 
                                         }
                                     }
@@ -207,8 +209,10 @@ function RouteIndex(){
                         
                         <Route exact path="/s/modules/all" render={(props) => <AllModules {...props} />} />
 
-                        <Route exact path="/s/importacion/atencion-cliente" render={(props) => <CustomerServices {...props}/> } />
+                        <Route exact path="/s/importacion" render={(props) => <Imports {...props}/> } />
                         <Route exact path="/s/importacion/atencion-cliente/agregar-referencia" render={(props) => <AddOrUpdateReference {...props}/> } />
+                        
+                        <Route exact path="/s/catalogos" render={(props) => <Catalogs {...props}/> } />
                     </Switch>
                 </div>
            </React.Fragment>
